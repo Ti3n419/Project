@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum State 
+public enum State
 {
-    RUN,JUMP,FALL
+    RUN, JUMP, FALL
 }
 public class PlayerCtrl : TI3NMono
 {
@@ -34,25 +34,25 @@ public class PlayerCtrl : TI3NMono
     }
     protected virtual void LoadBoxCollider2D()
     {
-        if(boxCollider2d != null) return;
+        if (boxCollider2d != null) return;
         this.boxCollider2d = this.GetComponentInChildren<BoxCollider2D>();
     }
     protected virtual void LoadCapsuleCollider2D()
     {
-        if(capsuleCollider2d != null) return;
+        if (capsuleCollider2d != null) return;
         this.capsuleCollider2d = this.GetComponentInChildren<CapsuleCollider2D>();
     }
     protected virtual void LoadAnimator()
     {
-        if(animator != null) return;
+        if (animator != null) return;
         this.animator = this.GetComponentInChildren<Animator>();
     }
     protected virtual void LoadSpriteRenderer()
     {
-        if(spriteRenderer != null) return;
+        if (spriteRenderer != null) return;
         this.spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
     }
-    protected virtual void Update() 
+    protected virtual void Update()
     {
         Debug.Log((int)this.state);
         Vector3 velocity = this.rigidbody2d.velocity;
@@ -62,12 +62,12 @@ public class PlayerCtrl : TI3NMono
                 if (velocity.y > 0) this.state = State.JUMP;
                 break;
             case State.JUMP:
-                if(velocity.y<0) this.state = State.FALL;
+                if (velocity.y < 0) this.state = State.FALL;
                 break;
             case State.FALL:
-                if(velocity.y==0) this.state= State.RUN;
+                if (velocity.y == 0) this.state = State.RUN;
                 break;
         }
         this.animator.SetInteger("State", (int)this.state);
-    } 
+    }
 }

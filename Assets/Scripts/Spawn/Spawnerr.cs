@@ -73,22 +73,7 @@ public class Spawnerr : TI3NMono
         return this.prefabs[rand];
     }
     protected virtual Vector3 GetSpawnPos(Transform prefab)
-    {
-        //int index = prefabs.IndexOf(prefab);
-        //if (index == -1)
-        //{
-        //    Debug.LogWarning("Prefab not found in list, using default position");
-        //    return lowPos.position;
-        //}
-        //if (index == 0 || index == 2)
-        //{
-        //    return lowPos.position;
-        //}
-        //else if (index == 1)
-        //{
-        //    return highPos.position;
-        //}
-        //return lowPos.position;
+    {    
         ObtaclesCtrl ctrl = prefab.GetComponent<ObtaclesCtrl>();
         if (ctrl.ObtaclesSO != null)
         {

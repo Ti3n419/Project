@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 
-public class GameManager : TI3NMono
+public class GameManager : GameManagerCtrl
 {
     public static System.Action OnGameStarted;//ds
     private static GameManager instance;
@@ -19,10 +19,7 @@ public class GameManager : TI3NMono
     
     private float highScore = 0;
     public float HighScore => highScore;
-    [SerializeField] private GameObject scoreTextObject;
-    [SerializeField] private GameObject gameStartMess;
-    [SerializeField] private GameObject gameOverMess;
-
+    
     private bool isGameOver = false;
     public bool IsGameOver => isGameOver;// gameover flag
 
@@ -125,12 +122,16 @@ public class GameManager : TI3NMono
         gameOverMess.SetActive(true);
         Time.timeScale = 0;
         CheckAndUpdateHighScore();// Kiểm tra và cập nhật high score khi game kết thúc
-        StartCoroutine(ReloadScene());
+        //StartCoroutine(ReloadScene());
     }
-    private IEnumerator ReloadScene()
+    //private IEnumerator ReloadScene()
+    //{
+    //    yield return new WaitForSecondsRealtime(2f);
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
+    public virtual void LoadMainMenu() 
     {
-        yield return new WaitForSecondsRealtime(2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()
@@ -143,28 +144,6 @@ public class GameManager : TI3NMono
     //    highScore = 0;
     //    scoreText.UpdateHighScore();
     //}
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        this.LoadStartGameMess();
-        this.LoadGameOverMess();
-        this.LoadScoreText();
-        //this.LoadScoreText();
-    }
-    protected virtual void LoadStartGameMess() 
-    {
-        if(this.scoreTextObject!= null) return;
-        this.scoreTextObject = GameObject.Find("Score");
-    }
-    protected virtual void LoadScoreText() 
-    {
-        if(this.gameStartMess!= null) return;
-        this.gameStartMess = GameObject.Find("StartGameMess");
-    }
-    protected virtual void LoadGameOverMess() 
-    {
-        if(this.gameOverMess!= null) return ;
-        this.gameOverMess = GameObject.Find("GameOverMess");
-    }
+    
    
 }
