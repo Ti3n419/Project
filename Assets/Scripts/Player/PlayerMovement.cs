@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum State
+{
+    RUN, JUMP, FALL
+}
 
 public class PlayerMovement : TI3NMono
 {
     [SerializeField] private float jumpForce = 15f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private LayerMask groundLayer; 
+    [SerializeField] private State state = State.RUN;
     private bool isGrounded;
     private bool isDuck;
+    [SerializeField] private PlayerCtrl playerCtrl;
     public PlayerCtrl PlayerCtrl => playerCtrl;
     protected override void LoadComponents()
     {
@@ -33,9 +38,10 @@ public class PlayerMovement : TI3NMono
 
         this.isGrounded = this.CheckIfGrounded();
 
-        HandleJump();
-        HandleDuck();
-        HandleSoundEffect();
+        this.HandleJump();
+        this.HandleDuck();
+        this.UpdateAnim();
+        this.HandleSoundEffect();
 
     }
     private bool CheckIfGrounded()
@@ -70,6 +76,24 @@ public class PlayerMovement : TI3NMono
             this.PlayerCtrl.Animator.SetBool("isDuck", false);
             this.isDuck = false;
         }
+    }
+    protected virtual void UpdateAnim() 
+    {
+        Debug.Log((int)this.state);
+        Vector3 velocity = this.PlayerCtrl.Rigidbody2D.velocity;
+        switch (this.state)
+        {
+            case State.RUN:
+                if (velocity.y > 0) this.state = State.JUMP;
+                break;
+            case State.JUMP:
+                if (velocity.y < 0) this.state = State.FALL;
+                break;
+            case State.FALL:
+                if (velocity.y == 0) this.state = State.RUN;
+                break;
+        }
+        this.PlayerCtrl.Animator.SetInteger("State", (int)this.state);
     }
     private void HandleSoundEffect()
     {

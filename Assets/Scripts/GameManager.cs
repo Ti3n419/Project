@@ -32,7 +32,6 @@ public class GameManager : GameManagerCtrl
         instance = this;
         LoadHighScore();// Tải high score khi khởi tạo
         //ResetHighScore();
-
     }
     public float GetGameSpeed()
     {
@@ -40,12 +39,7 @@ public class GameManager : GameManagerCtrl
     }
     void Start()
     {
-        //scoreText.UpdateHighScore();
         StartGame();
-        //UpdateHighScore();// Cập nhật hiển thị high score
-        
-
-
     }
     void Update()
     {
@@ -76,9 +70,7 @@ public class GameManager : GameManagerCtrl
         if (currentScore > highScore)
         {
             highScore = currentScore;
-            SaveHighScore();
-            //UpdateHighScore();
-            //scoreText.UpdateHighScore();
+            SaveHighScore();            
         }
     }
 
@@ -88,8 +80,7 @@ public class GameManager : GameManagerCtrl
     }
     private void UpdateScore()
     {
-        score += Time.deltaTime * 15; 
-        //scoreText.text = "Score:" + Mathf.FloorToInt(score);
+        score += Time.deltaTime * 15;         
     }
     private void StartGame()
     {
@@ -118,9 +109,9 @@ public class GameManager : GameManagerCtrl
     }
     public void GameOver()
     {
+        Time.timeScale = 0;
         isGameOver = true;
         gameOverMess.SetActive(true);
-        Time.timeScale = 0;
         CheckAndUpdateHighScore();// Kiểm tra và cập nhật high score khi game kết thúc
         //StartCoroutine(ReloadScene());
     }

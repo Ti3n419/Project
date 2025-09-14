@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum State
-{
-    RUN, JUMP, FALL
-}
+
 public class PlayerCtrl : TI3NMono
 {
     [SerializeField] private Rigidbody2D rigidbody2d;
@@ -12,12 +9,13 @@ public class PlayerCtrl : TI3NMono
     [SerializeField] private CapsuleCollider2D capsuleCollider2d;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private State state = State.RUN;
+    
     public Rigidbody2D Rigidbody2D => rigidbody2d;
     public BoxCollider2D BoxCollider2D => boxCollider2d;
     public CapsuleCollider2D CapsuleCollider2D => capsuleCollider2d;
     public Animator Animator => animator;
     public SpriteRenderer SpriteRenderer => spriteRenderer;
+    
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -52,22 +50,5 @@ public class PlayerCtrl : TI3NMono
         if (spriteRenderer != null) return;
         this.spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
     }
-    protected virtual void Update()
-    {
-        Debug.Log((int)this.state);
-        Vector3 velocity = this.rigidbody2d.velocity;
-        switch (this.state)
-        {
-            case State.RUN:
-                if (velocity.y > 0) this.state = State.JUMP;
-                break;
-            case State.JUMP:
-                if (velocity.y < 0) this.state = State.FALL;
-                break;
-            case State.FALL:
-                if (velocity.y == 0) this.state = State.RUN;
-                break;
-        }
-        this.animator.SetInteger("State", (int)this.state);
-    }
+
 }
