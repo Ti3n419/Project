@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawnerr : TI3NMono
+public class Spawner : TI3NMono
 {
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected Transform holder;
@@ -77,7 +77,7 @@ public class Spawnerr : TI3NMono
         ObtaclesCtrl ctrl = prefab.GetComponent<ObtaclesCtrl>();
         if (ctrl.ObtaclesSO != null)
         {
-            switch (ctrl.ObtaclesSO.typePos) 
+            switch (ctrl.ObtaclesSO.typePos)
             {
                 case ObtaclesSO.TypePos.LOW_POS:
                     return this.lowPos.position;

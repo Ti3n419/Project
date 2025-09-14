@@ -1273,6 +1273,7 @@ MonoBehaviour:
   scoreTextObject: {fileID: 1104616876}
   gameStartMess: {fileID: 524463589}
   gameOverMess: {fileID: 1487600401}
+  scoreText: {fileID: 1104616878}
   speedIncrease: 0.15
 --- !u!4 &485170790
 Transform:
@@ -1796,6 +1797,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  state: 0
   playerCtrl: {fileID: 931853184}
 --- !u!1 &752400556
 GameObject:
@@ -2124,7 +2126,6 @@ MonoBehaviour:
   capsuleCollider2d: {fileID: 931853181}
   animator: {fileID: 1079442862}
   spriteRenderer: {fileID: 1079442860}
-  state: 0
 --- !u!4 &931853185
 Transform:
   m_ObjectHideFlags: 0
@@ -4047,9 +4048,9 @@ SceneRoots:
   - {fileID: 1018722328}
   - {fileID: 861784980}
   - {fileID: 485170790}
-  - {fileID: 1040266804}
   - {fileID: 1589430202}
   - {fileID: 396285826}
   - {fileID: 400327541}
   - {fileID: 931853185}
   - {fileID: 2128947914}
+  - {fileID: 1040266804}

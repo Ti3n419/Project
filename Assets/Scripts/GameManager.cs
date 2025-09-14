@@ -24,6 +24,7 @@ public class GameManager : GameManagerCtrl
     public bool IsGameOver => isGameOver;// gameover flag
 
     private bool isStarting = false;
+
     
     protected override void Awake()
     {
@@ -129,12 +130,12 @@ public class GameManager : GameManagerCtrl
     {
         Application.Quit();
     }
-    //public void ResetHighScore()
-    //{
-    //    PlayerPrefs.DeleteKey("HighScore");
-    //    highScore = 0;
-    //    scoreText.UpdateHighScore();
-    //}
-    
-   
+    public void ResetHighScore()
+    {
+        PlayerPrefs.DeleteKey("HighScore");
+        highScore = 0;
+        scoreText.UpdateHighScore();
+    }
+
+
 }

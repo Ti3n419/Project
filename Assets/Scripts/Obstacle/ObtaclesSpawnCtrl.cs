@@ -9,12 +9,14 @@ public class ObtaclesSpawnCtrl : TI3NMono
 
     [SerializeField] protected ObtaclesSpawnPoint obtaclesSpawnPoint;
     public ObtaclesSpawnPoint ObtaclesSpawnPoint => obtaclesSpawnPoint;
+    
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadObstaclesSpawner();
         this.LoadObtaclesSpawnPoint();
+        
     }
     protected virtual void LoadObstaclesSpawner()
     {
@@ -29,4 +31,5 @@ public class ObtaclesSpawnCtrl : TI3NMono
         this.obtaclesSpawnPoint = FindObjectOfType<ObtaclesSpawnPoint>();
         Debug.Log(transform.name + ": LoadObtaclesSpawnPoint", gameObject);
     }
+  
 }
