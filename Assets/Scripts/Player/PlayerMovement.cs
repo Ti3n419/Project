@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum State
 {
-    RUN, JUMP, FALL
+    RUN,
+    JUMP,
+    FALL
 }
 
 public class PlayerMovement : TI3NMono
@@ -11,7 +13,7 @@ public class PlayerMovement : TI3NMono
     [SerializeField] private float jumpForce = 15f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
-    [SerializeField] private LayerMask groundLayer; 
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private State state = State.RUN;
     private bool isGrounded;
     private bool isDuck;
@@ -55,9 +57,9 @@ public class PlayerMovement : TI3NMono
     }
     private void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !isDuck)
+        if (Input.GetKey(KeyCode.UpArrow) && isGrounded && !isDuck)
         {
-            this.PlayerCtrl.Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            this.PlayerCtrl.Rigidbody2D.velocity = new Vector2(this.playerCtrl.Rigidbody2D.velocity.x, this.jumpForce);
         }
     }
     private void HandleDuck()
@@ -77,7 +79,7 @@ public class PlayerMovement : TI3NMono
             this.isDuck = false;
         }
     }
-    protected virtual void UpdateAnim() 
+    protected virtual void UpdateAnim()
     {
         Debug.Log((int)this.state);
         Vector3 velocity = this.PlayerCtrl.Rigidbody2D.velocity;
