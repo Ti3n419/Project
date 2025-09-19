@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstaclesSpawner : Spawner
+public class ObstaclesSpawner : PoolSpawner
 {
     private static ObstaclesSpawner instance;
     public static ObstaclesSpawner Instance => instance;

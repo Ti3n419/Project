@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : TI3NMono
+public class PoolSpawner : TI3NMono
 {
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected Transform holder;

@@ -13,7 +13,7 @@ public abstract class Despawn : TI3NMono
         if(!this.CanDespawn()) return;
         this.DespawnObj();
     }
-    public virtual void DespawnObj() 
+    public virtual void DespawnObj()
     {
 
     }
