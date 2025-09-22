@@ -11,8 +11,6 @@ public enum State
 public class PlayerMovement : TI3NMono
 {
     [SerializeField] private float jumpForce = 15f;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private State state = State.RUN;
     private bool isGrounded;
@@ -37,23 +35,22 @@ public class PlayerMovement : TI3NMono
     protected virtual void Update()
     {
         if (GameManager.Instance.IsGameOver) return;// khi game over khong the thao tac
-
         this.isGrounded = this.CheckIfGrounded();
-
         this.HandleJump();
         this.HandleDuck();
         this.UpdateAnim();
         this.HandleSoundEffect();
-
     }
     private bool CheckIfGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Vector2 dir = new Vector2(0, -90);
+        return Physics2D.Raycast(transform.position, dir, 0.5f, groundLayer);
     }
     private void OnDrawGizmosSelected()
     {
+        Vector2 dir = new Vector2(0, -90);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawRay(transform.position, dir.normalized * 0.5f);
     }
     private void HandleJump()
     {
@@ -64,7 +61,7 @@ public class PlayerMovement : TI3NMono
     }
     private void HandleDuck()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && isGrounded)
+        if (Input.GetKey(KeyCode.DownArrow) && isGrounded)
         {
             this.PlayerCtrl.BoxCollider2D.enabled = false;
             this.PlayerCtrl.CapsuleCollider2D.enabled = true;
@@ -81,7 +78,7 @@ public class PlayerMovement : TI3NMono
     }
     protected virtual void UpdateAnim()
     {
-        Debug.Log((int)this.state);
+        //Debug.Log((int)this.state);
         Vector3 velocity = this.PlayerCtrl.Rigidbody2D.velocity;
         switch (this.state)
         {
