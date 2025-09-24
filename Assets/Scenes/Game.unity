@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obtaclesSpawnCtrl: {fileID: 400327542}
-  randomDelay: 2
+  randomDelay: 1.5
   randomTimer: 0
 --- !u!114 &400327544
 MonoBehaviour:
@@ -3416,7 +3416,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9716981, g: 0.52097183, b: 0.03208439, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3488,6 +3488,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763595417}
   m_CullTransparentMesh: 1
+--- !u!1 &1803871771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803871773}
+  - component: {fileID: 1803871772}
+  m_Layer: 0
+  m_Name: Obsever
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1803871772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803871771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385ece74fac68444b95021f1072245cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1803871773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803871771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.31576526, y: -2.3725061, z: -6.6303616}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1827609738
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,7 +3828,7 @@ GameObject:
   - component: {fileID: 2117580059}
   - component: {fileID: 2117580060}
   m_Layer: 0
-  m_Name: Music
+  m_Name: MusicBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3815,9 +3859,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 819fd97e11b142142b5c0ce8d374ee02, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 04578a47afbd2d240b2e301a64b18722, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.21
+  m_Volume: 0.666
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4013,10 +4057,11 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1018722328}
   - {fileID: 861784980}
-  - {fileID: 485170790}
   - {fileID: 1589430202}
   - {fileID: 396285826}
   - {fileID: 400327541}
   - {fileID: 931853185}
   - {fileID: 2128947914}
   - {fileID: 1040266804}
+  - {fileID: 1803871773}
+  - {fileID: 485170790}

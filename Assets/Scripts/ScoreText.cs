@@ -9,7 +9,12 @@ public class ScoreText : TI3NMono
 {
     [SerializeField] protected TextMeshProUGUI scoreText;
     [SerializeField] protected TextMeshProUGUI highScoreText;
-
+    protected override void Awake()
+    {
+        base.Awake();
+        Obsever.Instance.AddListener(CONSTANT.SCORE_CHANGE, UpdateScore);
+        Obsever.Instance.AddListener(CONSTANT.HIGHSCORE_SHOW, UpdateHighScore);
+    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -28,11 +33,9 @@ public class ScoreText : TI3NMono
     }
     protected virtual void FixedUpdate()
     {
-        Debug.Log(GameManager.Instance.Score);
-        if (this.scoreText != null)
-            scoreText.text = "Score:" + Mathf.FloorToInt(GameManager.Instance.Score);
-
-        this.UpdateHighScore();
+        //Debug.Log(GameManager.Instance.Score);
+        //this.UpdateScore();
+        //this.UpdateHighScore();
     }
     public void UpdateHighScore()  // Hàm cập nhật hiển thị high score trên UI
     {
@@ -40,5 +43,10 @@ public class ScoreText : TI3NMono
         {
             highScoreText.text = "High Score: " + Mathf.FloorToInt(GameManager.Instance.HighScore);
         }
+    }
+    protected void UpdateScore() // Hàm cập nhật hiển thị score trên UI
+    {
+        if (this.scoreText != null)
+            scoreText.text = "Score:" + Mathf.FloorToInt(GameManager.Instance.Score);
     }
 }

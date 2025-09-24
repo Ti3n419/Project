@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : TI3NMono
 {
     private static AudioManager instance;
     public static AudioManager Instance => instance;
@@ -12,10 +12,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip hurtClip;
     [SerializeField] private AudioClip crackEggClip;
     private bool hasPlayEffectSound = false;
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null) return;
-        instance = this;
+        if (AudioManager.instance != null) return;
+        AudioManager.instance = this;
 
     }
     public bool HasPlayEffectSound()

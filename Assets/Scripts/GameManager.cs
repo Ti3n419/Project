@@ -29,9 +29,8 @@ public class GameManager : GameManagerCtrl
     protected override void Awake()
     {
         base.Awake();
-        if (instance != null) return;
-        instance = this;
-        LoadHighScore();// Tải high score khi khởi tạo
+        if (GameManager.instance != null) return;
+        GameManager.instance = this;       
         //ResetHighScore();
     }
     public float GetGameSpeed()
@@ -41,10 +40,10 @@ public class GameManager : GameManagerCtrl
     void Start()
     {
         StartGame();
+        LoadHighScore();// Tải high score khi play 
     }
     void Update()
     {
-        
         if (gameStartMess.activeSelf)
         {
             HandleStartInput();
@@ -58,6 +57,7 @@ public class GameManager : GameManagerCtrl
     protected virtual void LoadHighScore()  // Hàm tải high score từ PlayerPrefs
     {
         highScore = PlayerPrefs.GetFloat("HighScore", 0);
+        Obsever.Instance.Notify(CONSTANT.HIGHSCORE_SHOW);
     }
     protected virtual void SaveHighScore()   // Hàm lưu high score vào PlayerPrefs
     {
@@ -81,7 +81,8 @@ public class GameManager : GameManagerCtrl
     }
     private void UpdateScore()
     {
-        score += Time.deltaTime * 15;         
+        score += Time.deltaTime * 15;
+        Obsever.Instance.Notify(CONSTANT.SCORE_CHANGE);
     }
     private void StartGame()
     {
